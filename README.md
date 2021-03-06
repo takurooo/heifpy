@@ -31,8 +31,8 @@ Display box information in HEIF file.
 ### How to use HeifReader module
 
 ```python
-from api.heif.heifreader import HeifReader, ItemType
-heif_reader = HeifReader(heif_path) # Parse HEIF file
+import heifpy
+heif_reader = heifpy.HeifReader(heif_path) # Parse HEIF file
 ```
 
 HeifReader functions
