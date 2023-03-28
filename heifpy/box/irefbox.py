@@ -1,9 +1,10 @@
 # -----------------------------------
 # import
 # -----------------------------------
+from heifpy.file import BinaryFileReader
+
 from . import boxutils
 from .basebox import Box, FullBox
-from heifpy.file import BinaryFileReader
 
 
 # -----------------------------------
@@ -103,5 +104,5 @@ class ItemReferenceBox(FullBox):
 # -----------------------------------
 # main
 # -----------------------------------
-if __name__ == '__main__':
+if __name__ == "__main__":
     pass

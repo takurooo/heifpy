@@ -1,10 +1,12 @@
 # -----------------------------------
 # import
 # -----------------------------------
+from heifpy.file import BinaryFileReader
+
 from . import boxutils
 from .basebox import Box
 from .elstbox import EditListBox
-from heifpy.file import BinaryFileReader
+
 
 # -----------------------------------
 # define
@@ -38,13 +40,13 @@ class EditBox(Box):
         while not self.read_complete(reader):
             box_size, box_type = boxutils.read_box_header(reader)
 
-            if box_type == 'elst':
+            if box_type == "elst":
                 self.elst = EditListBox()
                 self.elst.parse(reader)
             else:
                 reader.seek(box_size, 1)
 
-        assert self.read_complete(reader), f'{self.type} num bytes left not 0.'
+        assert self.read_complete(reader), f"{self.type} num bytes left not 0."
 
     def print_box(self) -> None:
         super(EditBox, self).print_box()
@@ -55,5 +57,5 @@ class EditBox(Box):
 # -----------------------------------
 # main
 # -----------------------------------
-if __name__ == '__main__':
+if __name__ == "__main__":
     pass

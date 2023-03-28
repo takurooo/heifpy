@@ -1,8 +1,9 @@
 # -----------------------------------
 # import
 # -----------------------------------
-from .basebox import FullBox
 from heifpy.file import BinaryFileReader
+
+from .basebox import FullBox
 
 
 # -----------------------------------
@@ -12,6 +13,7 @@ from heifpy.file import BinaryFileReader
 # -----------------------------------
 # function
 # -----------------------------------
+
 
 # -----------------------------------
 # class
@@ -41,7 +43,7 @@ class SampleSizeBox(FullBox):
             for i in range(self.sample_count):
                 self.entry_size.append(reader.read32())
 
-        assert self.read_complete(reader), f'{self.type} num bytes left not 0.'
+        assert self.read_complete(reader), f"{self.type} num bytes left not 0."
 
     def get_sample_size(self, idx: int) -> int:
         if self.sample_size == 0:
@@ -59,5 +61,5 @@ class SampleSizeBox(FullBox):
 # -----------------------------------
 # main
 # -----------------------------------
-if __name__ == '__main__':
+if __name__ == "__main__":
     pass

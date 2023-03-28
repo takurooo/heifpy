@@ -2,7 +2,9 @@
 # import
 # -----------------------------------
 from typing import Tuple
+
 from heifpy.file import BinaryFileReader
+
 
 # -----------------------------------
 # define

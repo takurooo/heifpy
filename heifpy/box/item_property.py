@@ -1,8 +1,9 @@
 # -----------------------------------
 # import
 # -----------------------------------
-from .basebox import Box, FullBox
 from heifpy.file import BinaryFileReader
+
+from .basebox import Box, FullBox
 
 
 # -----------------------------------
@@ -12,6 +13,7 @@ from heifpy.file import BinaryFileReader
 # -----------------------------------
 # function
 # -----------------------------------
+
 
 # -----------------------------------
 # class

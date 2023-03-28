@@ -2,8 +2,10 @@
 # import
 # -----------------------------------
 from typing import Tuple
-from .item_property import ItemFullProperty
+
 from heifpy.file import BinaryFileReader
+
+from .item_property import ItemFullProperty
 
 
 # -----------------------------------
@@ -13,6 +15,7 @@ from heifpy.file import BinaryFileReader
 # -----------------------------------
 # function
 # -----------------------------------
+
 
 # -----------------------------------
 # class

@@ -1,8 +1,9 @@
 # -----------------------------------
 # import
 # -----------------------------------
-from .item_property import ItemProperty
 from heifpy.file import BinaryFileReader
+
+from .item_property import ItemProperty
 
 
 # -----------------------------------
@@ -12,6 +13,7 @@ from heifpy.file import BinaryFileReader
 # -----------------------------------
 # function
 # -----------------------------------
+
 
 # -----------------------------------
 # class

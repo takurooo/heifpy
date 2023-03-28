@@ -2,10 +2,13 @@
 # import
 # -----------------------------------
 from typing import List
+
+from heifpy.file import BinaryFileReader
+
 from . import boxutils
 from .basebox import FullBox
 from .infebox import ItemInfoEntry
-from heifpy.file import BinaryFileReader
+
 
 # -----------------------------------
 # define

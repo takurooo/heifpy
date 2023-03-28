@@ -146,7 +146,6 @@ class BinaryFileReader:
         ]
 
     def readn(self, size_bits: int, signed: bool = False) -> int:
-
         if size_bits == 0:
             return 0
 

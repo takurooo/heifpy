@@ -2,8 +2,10 @@
 # import
 # -----------------------------------
 from typing import List
-from .basebox import Box
+
 from heifpy.file import BinaryFileReader
+
+from .basebox import Box
 
 
 # -----------------------------------
@@ -13,6 +15,7 @@ from heifpy.file import BinaryFileReader
 # -----------------------------------
 # function
 # -----------------------------------
+
 
 # -----------------------------------
 # class

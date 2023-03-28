@@ -1,10 +1,12 @@
 # -----------------------------------
 # import
 # -----------------------------------
-import os
 import codecs
+import os
 import re
-from typing import Iterator, Any, List, Optional
+from typing import Any, Iterator, List, Optional
+
+
 # -----------------------------------
 # define
 # -----------------------------------
@@ -17,13 +19,13 @@ CUR_PATH = os.path.join(os.path.dirname(__file__))
 
 
 def list_to_file(fpath, list: Iterator[Any]) -> None:
-    with codecs.open(fpath, 'w', 'utf-8') as f:
+    with codecs.open(fpath, "w", "utf-8") as f:
         for line in list:
-            f.write(line + '\n')
+            f.write(line + "\n")
 
 
 def list_from_file(fpath: str) -> List[str]:
-    with codecs.open(fpath, 'r', 'utf-8') as f:
+    with codecs.open(fpath, "r", "utf-8") as f:
         lines = f.read().split()
     return lines
 
@@ -53,5 +55,5 @@ def list_from_dir(dir, target_ext: Optional[str] = None) -> List[str]:
 # -----------------------------------
 # main
 # -----------------------------------
-if __name__ == '__main__':
+if __name__ == "__main__":
     pass

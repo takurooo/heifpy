@@ -1,6 +1,8 @@
 # -----------------------------------
 # import
 # -----------------------------------
+from heifpy.file import BinaryFileReader
+
 from . import boxutils
 from .basebox import Box
 from .cttsbox import CompositionTimeToSample
@@ -9,7 +11,6 @@ from .stscbox import SampleToChunkBox
 from .stsdbox import SampleDescriptionBox
 from .stszbox import SampleSizeBox
 from .sttsbox import DecodingTimeToSampleBox
-from heifpy.file import BinaryFileReader
 
 
 # -----------------------------------
@@ -49,28 +50,28 @@ class SampleTableBox(Box):
         while not self.read_complete(reader):
             box_size, box_type = boxutils.read_box_header(reader)
             # print(f" {box_type}")
-            if box_type == 'stsd':
+            if box_type == "stsd":
                 self.stsd = SampleDescriptionBox()
                 self.stsd.parse(reader)
-            elif box_type == 'stts':
+            elif box_type == "stts":
                 self.stts = DecodingTimeToSampleBox()
                 self.stts.parse(reader)
-            elif box_type == 'ctts':
+            elif box_type == "ctts":
                 self.ctts = CompositionTimeToSample()
                 self.ctts.parse(reader)
-            elif box_type == 'stsc':
+            elif box_type == "stsc":
                 self.stsc = SampleToChunkBox()
                 self.stsc.parse(reader)
-            elif box_type == 'stsz':
+            elif box_type == "stsz":
                 self.stsz = SampleSizeBox()
                 self.stsz.parse(reader)
-            elif box_type == 'stco' or box_type == 'co64':
+            elif box_type == "stco" or box_type == "co64":
                 self.stco = ChunkOffsetBox()
                 self.stco.parse(reader)
             else:
                 reader.seek(box_size, 1)
 
-        assert self.read_complete(reader), f'{self.type} num bytes left not 0.'
+        assert self.read_complete(reader), f"{self.type} num bytes left not 0."
 
     def print_box(self) -> None:
         super(SampleTableBox, self).print_box()
@@ -91,5 +92,5 @@ class SampleTableBox(Box):
 # -----------------------------------
 # main
 # -----------------------------------
-if __name__ == '__main__':
+if __name__ == "__main__":
     pass

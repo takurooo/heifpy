@@ -1,8 +1,9 @@
 # -----------------------------------
 # import
 # -----------------------------------
-from .basebox import FullBox
 from heifpy.file import BinaryFileReader
+
+from .basebox import FullBox
 
 
 # -----------------------------------
@@ -12,6 +13,7 @@ from heifpy.file import BinaryFileReader
 # -----------------------------------
 # function
 # -----------------------------------
+
 
 # -----------------------------------
 # class
@@ -35,7 +37,7 @@ class ChunkOffsetBox(FullBox):
 
         self.entry_count = reader.read32()
 
-        if self.get_type() == 'stco':
+        if self.get_type() == "stco":
             for i in range(self.entry_count):
                 self.chunk_offset.append(reader.read32())
         else:
@@ -43,7 +45,7 @@ class ChunkOffsetBox(FullBox):
             for i in range(self.entry_count):
                 self.chunk_offset.append(reader.read64())
 
-        assert self.read_complete(reader), f'{self.type} num bytes left not 0.'
+        assert self.read_complete(reader), f"{self.type} num bytes left not 0."
 
     def print_box(self) -> None:
         super(ChunkOffsetBox, self).print_box()
@@ -54,5 +56,5 @@ class ChunkOffsetBox(FullBox):
 # -----------------------------------
 # main
 # -----------------------------------
-if __name__ == '__main__':
+if __name__ == "__main__":
     pass

@@ -2,16 +2,17 @@
 # import
 # -----------------------------------
 from typing import List
+
+from heifpy.file import BinaryFileReader
+
 from . import boxutils
 from .basebox import Box
 from .colrbox import ColourInformationBox
 from .hvccbox import HEVCConfigurationBox
 from .irotbox import ItemRotation
 from .ispebox import ImageSpatialExtentsProperty
-from .pixibox import PixelInformationProperty
 from .item_property import ItemProperty
-
-from heifpy.file import BinaryFileReader
+from .pixibox import PixelInformationProperty
 
 
 # -----------------------------------
@@ -21,6 +22,7 @@ from heifpy.file import BinaryFileReader
 # -----------------------------------
 # function
 # -----------------------------------
+
 
 # -----------------------------------
 # class

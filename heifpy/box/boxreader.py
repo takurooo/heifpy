@@ -2,11 +2,13 @@
 # import
 # -----------------------------------
 from enum import Enum
+
 from heifpy.file import BinaryFileReader
-from .ftypebox import FileTypeBox
-from .metabox import MetaBox
-from .mdatbox import MediaDataBox
+
 from . import boxutils
+from .ftypebox import FileTypeBox
+from .mdatbox import MediaDataBox
+from .metabox import MetaBox
 
 
 # -----------------------------------

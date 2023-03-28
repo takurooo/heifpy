@@ -2,8 +2,10 @@
 # import
 # -----------------------------------
 from typing import List, Optional
-from .basebox import FullBox
+
 from heifpy.file import BinaryFileReader
+
+from .basebox import FullBox
 
 
 # -----------------------------------
@@ -13,6 +15,7 @@ from heifpy.file import BinaryFileReader
 # -----------------------------------
 # function
 # -----------------------------------
+
 
 # -----------------------------------
 # class
@@ -114,7 +117,6 @@ class ItemLocationBox(FullBox):
 
             extent_count = reader.read16()
             for j in range(extent_count):
-
                 item_loc_ext = ItemLocationExtent()
 
                 if (
@@ -148,7 +150,6 @@ class ItemLocationBox(FullBox):
                 print("\t\t\textent_index  :", item_iloc_ext.extent_index)
 
     def get_item_loc(self, item_ID: int) -> Optional[ItemLocation]:
-
         for item_loc in self.item_loc_list:
             if item_loc.item_ID == item_ID:
                 return item_loc
@@ -156,7 +157,6 @@ class ItemLocationBox(FullBox):
         assert 0, f"invalid item_ID {item_ID}"
 
     def has_item_id_entry(self, item_ID: int) -> bool:
-
         for item_loc in self.item_loc_list:
             if item_loc.item_ID == item_ID:
                 return True

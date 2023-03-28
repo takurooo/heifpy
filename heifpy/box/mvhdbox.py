@@ -1,8 +1,9 @@
 # -----------------------------------
 # import
 # -----------------------------------
-from .basebox import FullBox
 from heifpy.file import BinaryFileReader
+
+from .basebox import FullBox
 
 
 # -----------------------------------
@@ -12,6 +13,7 @@ from heifpy.file import BinaryFileReader
 # -----------------------------------
 # function
 # -----------------------------------
+
 
 # -----------------------------------
 # class
@@ -68,7 +70,7 @@ class MovieHeaderBox(FullBox):
 
         self.next_track_ID = reader.read32()
 
-        assert self.read_complete(reader), f'{self.type} num bytes left not 0.'
+        assert self.read_complete(reader), f"{self.type} num bytes left not 0."
 
     def print_box(self) -> None:
         super(MovieHeaderBox, self).print_box()
@@ -86,5 +88,5 @@ class MovieHeaderBox(FullBox):
 # -----------------------------------
 # main
 # -----------------------------------
-if __name__ == '__main__':
+if __name__ == "__main__":
     pass

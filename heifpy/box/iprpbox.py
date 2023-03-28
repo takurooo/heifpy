@@ -1,11 +1,12 @@
 # -----------------------------------
 # import
 # -----------------------------------
+from heifpy.file import BinaryFileReader
+
 from . import boxutils
 from .basebox import Box
 from .ipcobox import ItemPropertyContainerBox
 from .ipmabox import ItemPropertyAssociation
-from heifpy.file import BinaryFileReader
 
 
 # -----------------------------------

@@ -1,12 +1,13 @@
 # -----------------------------------
 # import
 # -----------------------------------
+from heifpy.file import BinaryFileReader
+
 from . import boxutils
 from .basebox import Box
 from .edtsbox import EditBox
 from .mdiabox import MediaBox
 from .tkhdbox import TrackHeaderBox
-from heifpy.file import BinaryFileReader
 
 
 # -----------------------------------
@@ -16,6 +17,7 @@ from heifpy.file import BinaryFileReader
 # -----------------------------------
 # function
 # -----------------------------------
+
 
 # -----------------------------------
 # class
@@ -42,13 +44,13 @@ class TrackBox(Box):
         while not self.read_complete(reader):
             box_size, box_type = boxutils.read_box_header(reader)
 
-            if box_type == 'tkhd':
+            if box_type == "tkhd":
                 self.tkhd = TrackHeaderBox()
                 self.tkhd.parse(reader)
-            elif box_type == 'edts':
+            elif box_type == "edts":
                 self.edts = EditBox()
                 self.edts.parse(reader)
-            elif box_type == 'mdia':
+            elif box_type == "mdia":
                 self.mdia = MediaBox()
                 self.mdia.parse(reader)
             else:
@@ -67,5 +69,5 @@ class TrackBox(Box):
 # -----------------------------------
 # main
 # -----------------------------------
-if __name__ == '__main__':
+if __name__ == "__main__":
     pass

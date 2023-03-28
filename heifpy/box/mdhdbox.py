@@ -2,8 +2,9 @@
 # import
 # -----------------------------------
 from _typeshed import NoneType
-from .basebox import FullBox
 from heifpy.file import BinaryFileReader
+
+from .basebox import FullBox
 
 
 # -----------------------------------
@@ -13,6 +14,7 @@ from heifpy.file import BinaryFileReader
 # -----------------------------------
 # function
 # -----------------------------------
+
 
 # -----------------------------------
 # class
@@ -55,7 +57,7 @@ class MediaHeaderBox(FullBox):
             self.language.append(reader.readbits(5))
         self.pre_defined = reader.read16()
 
-        assert self.read_complete(reader), f'{self.type} num bytes left not 0.'
+        assert self.read_complete(reader), f"{self.type} num bytes left not 0."
 
     def print_box(self) -> None:
         super(MediaHeaderBox, self).print_box()
@@ -71,5 +73,5 @@ class MediaHeaderBox(FullBox):
 # -----------------------------------
 # main
 # -----------------------------------
-if __name__ == '__main__':
+if __name__ == "__main__":
     pass

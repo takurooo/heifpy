@@ -1,10 +1,10 @@
 # -----------------------------------
 # import
 # -----------------------------------
-from . import boxutils
-from .basebox import Box
-from .basebox import FullBox
 from heifpy.file import BinaryFileReader
+
+from . import boxutils
+from .basebox import Box, FullBox
 
 
 # -----------------------------------
@@ -21,7 +21,6 @@ from heifpy.file import BinaryFileReader
 
 
 class SampleEntry(Box):
-
     def __init__(self):
         super(SampleEntry, self).__init__()
         self.data_reference_index = 0
@@ -38,7 +37,6 @@ class SampleEntry(Box):
 
 
 class AudioSampleEntry(SampleEntry):
-
     def __init__(self):
         super(AudioSampleEntry, self).__init__()
         self.channelcount = 0
@@ -88,21 +86,21 @@ class SampleDescriptionBox(FullBox):
         for _ in range(self.entry_count):
             box_size, box_type = boxutils.read_box_header(reader)
             # print(box_type)
-            if box_type == 'avc1':  # Advanced Video Coding
+            if box_type == "avc1":  # Advanced Video Coding
                 reader.seek(box_size, 1)  # TODO avc1
-            elif box_type == 'twos':  # Uncompressed 16-bit audio
+            elif box_type == "twos":  # Uncompressed 16-bit audio
                 self.twos = AudioSampleEntry()
                 self.twos.parse(reader)
-            elif box_type == 'ipcm':
+            elif box_type == "ipcm":
                 self.ipcm = AudioSampleEntry()
                 self.ipcm.parse(reader)
             # Real Time Metadata Sample Entry(XAVC Format)
-            elif box_type == 'rtmd':
+            elif box_type == "rtmd":
                 reader.seek(box_size, 1)  # TODO rtmd
             else:
                 reader.seek(box_size, 1)
 
-        assert self.read_complete(reader), f'{self.type} num bytes left not 0.'
+        assert self.read_complete(reader), f"{self.type} num bytes left not 0."
 
     def print_box(self) -> None:
         super(SampleDescriptionBox, self).print_box()
@@ -119,5 +117,5 @@ class SampleDescriptionBox(FullBox):
 # -----------------------------------
 # main
 # -----------------------------------
-if __name__ == '__main__':
+if __name__ == "__main__":
     pass

@@ -2,6 +2,8 @@
 # import
 # -----------------------------------
 
+from heifpy.file import BinaryFileReader
+
 from . import boxutils
 from .basebox import FullBox
 from .hdlrbox import HandlerReferenceBox
@@ -10,7 +12,7 @@ from .ilocbox import ItemLocationBox
 from .iprpbox import ItemPropertiesBox
 from .irefbox import ItemReferenceBox
 from .pitmbox import PrimaryItemBox
-from heifpy.file import BinaryFileReader
+
 
 # -----------------------------------
 # define

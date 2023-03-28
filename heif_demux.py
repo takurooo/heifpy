@@ -1,10 +1,13 @@
 # -----------------------------------
 # import
 # -----------------------------------
-import os
 import argparse
+import os
+
 import heifpy
+
 from .listutils import list_from_dir
+
 
 # -----------------------------------
 # define

@@ -1,8 +1,9 @@
 # -----------------------------------
 # import
 # -----------------------------------
-from .basebox import FullBox
 from heifpy.file import BinaryFileReader
+
+from .basebox import FullBox
 
 
 # -----------------------------------
@@ -43,7 +44,7 @@ class HintMediaHeaderBox(FullBox):
         self.avgbitrate = reader.read16()
         _ = reader.read32()  # reserved = 0
 
-        assert self.read_complete(reader), f'{self.type} num bytes left not 0.'
+        assert self.read_complete(reader), f"{self.type} num bytes left not 0."
 
     def print_box(self) -> None:
         super(HintMediaHeaderBox, self).print_box()
@@ -56,5 +57,5 @@ class HintMediaHeaderBox(FullBox):
 # -----------------------------------
 # main
 # -----------------------------------
-if __name__ == '__main__':
+if __name__ == "__main__":
     pass

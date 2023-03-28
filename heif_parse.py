@@ -3,7 +3,9 @@
 # -----------------------------------
 import argparse
 import os
+
 import heifpy
+
 
 # -----------------------------------
 # define
