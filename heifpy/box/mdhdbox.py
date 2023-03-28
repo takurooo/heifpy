@@ -1,7 +1,6 @@
 # -----------------------------------
 # import
 # -----------------------------------
-from _typeshed import NoneType
 from heifpy.file import BinaryFileReader
 
 from .basebox import FullBox
