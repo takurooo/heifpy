@@ -1,21 +1,10 @@
-# -----------------------------------
-# import
-# -----------------------------------
 import codecs
 import os
 import re
 from typing import Any, Iterator, List, Optional
 
 
-# -----------------------------------
-# define
-# -----------------------------------
 CUR_PATH = os.path.join(os.path.dirname(__file__))
-
-
-# -----------------------------------
-# function
-# -----------------------------------
 
 
 def list_to_file(fpath, list: Iterator[Any]) -> None:
@@ -52,8 +41,5 @@ def list_from_dir(dir, target_ext: Optional[str] = None) -> List[str]:
     return ret_list
 
 
-# -----------------------------------
-# main
-# -----------------------------------
 if __name__ == "__main__":
     pass
