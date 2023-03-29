@@ -1,4 +1,4 @@
-from heifpy.file import BinaryFileReader
+from heifpy.binary import BinaryFileReader
 
 from .item_property import ItemProperty
 

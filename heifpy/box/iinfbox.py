@@ -1,6 +1,6 @@
 from typing import List
 
-from heifpy.file import BinaryFileReader
+from heifpy.binary import BinaryFileReader
 
 from . import boxutils
 from .basebox import FullBox

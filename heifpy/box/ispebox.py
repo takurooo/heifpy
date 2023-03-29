@@ -1,6 +1,6 @@
 from typing import Tuple
 
-from heifpy.file import BinaryFileReader
+from heifpy.binary import BinaryFileReader
 
 from .item_property import ItemFullProperty
 

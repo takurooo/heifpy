@@ -4,8 +4,8 @@
 from enum import Enum
 from typing import List, Tuple
 
+from .binary import BinaryFileReader
 from .box import BoxReader, ItemProperty
-from .file import BinaryFileReader
 
 
 __all__ = ["ItemType", "HeifReader"]
