@@ -1,6 +1,3 @@
-# -----------------------------------
-# import
-# -----------------------------------
 import argparse
 import os
 
@@ -9,14 +6,6 @@ import heifpy
 from .listutils import list_from_dir
 
 
-# -----------------------------------
-# define
-# -----------------------------------
-
-
-# -----------------------------------
-# function
-# -----------------------------------
 def get_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Demux HEIF file.")
     parser.add_argument("path", type=str, help="path2your_file or dir", default=None)
@@ -49,9 +38,6 @@ def demux(img_path: str) -> None:
     return
 
 
-# -----------------------------------
-# main
-# -----------------------------------
 def main(args: argparse.Namespace) -> None:
     in_path = args.path
 

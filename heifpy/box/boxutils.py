@@ -1,18 +1,6 @@
-# -----------------------------------
-# import
-# -----------------------------------
 from typing import Tuple
 
 from heifpy.binary import BinaryFileReader
-
-
-# -----------------------------------
-# define
-# -----------------------------------
-
-# -----------------------------------
-# function
-# -----------------------------------
 
 
 def read_box_header(reader: BinaryFileReader) -> Tuple[int, str]:
@@ -22,12 +10,5 @@ def read_box_header(reader: BinaryFileReader) -> Tuple[int, str]:
     return (box_size, box_type)
 
 
-# -----------------------------------
-# class
-# -----------------------------------
-
-# -----------------------------------
-# main
-# -----------------------------------
 if __name__ == "__main__":
     pass
