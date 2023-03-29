@@ -1,22 +1,6 @@
-# -----------------------------------
-# import
-# -----------------------------------
 from heifpy.file import BinaryFileReader
 
 from .basebox import FullBox
-
-
-# -----------------------------------
-# define
-# -----------------------------------
-
-# -----------------------------------
-# function
-# -----------------------------------
-
-# -----------------------------------
-# class
-# -----------------------------------
 
 
 class SoundMediaHeaderBox(FullBox):
@@ -29,11 +13,11 @@ class SoundMediaHeaderBox(FullBox):
     """
 
     def __init__(self):
-        super(SoundMediaHeaderBox, self).__init__()
+        super().__init__()
         self.balance = 0
 
     def parse(self, reader: BinaryFileReader) -> None:
-        super(SoundMediaHeaderBox, self).parse(reader)
+        super().parse(reader)
 
         self.balance = reader.read16()  # balance = 0
         _ = reader.read16()  # reserved = 0
@@ -41,12 +25,9 @@ class SoundMediaHeaderBox(FullBox):
         assert self.read_complete(reader), f"{self.type} num bytes left not 0."
 
     def print_box(self) -> None:
-        super(SoundMediaHeaderBox, self).print_box()
+        super().print_box()
         print("balance :", self.balance)
 
 
-# -----------------------------------
-# main
-# -----------------------------------
 if __name__ == "__main__":
     pass

@@ -1,6 +1,3 @@
-# -----------------------------------
-# import
-# -----------------------------------
 from heifpy.file import BinaryFileReader
 
 from . import boxutils
@@ -13,19 +10,6 @@ from .stszbox import SampleSizeBox
 from .sttsbox import DecodingTimeToSampleBox
 
 
-# -----------------------------------
-# define
-# -----------------------------------
-
-# -----------------------------------
-# function
-# -----------------------------------
-
-# -----------------------------------
-# class
-# -----------------------------------
-
-
 class SampleTableBox(Box):
     """
     ISO/IEC 14496-12
@@ -36,7 +20,7 @@ class SampleTableBox(Box):
     """
 
     def __init__(self):
-        super(SampleTableBox, self).__init__()
+        super().__init__()
         self.stsd = None
         self.stts = None
         self.ctts = None
@@ -45,7 +29,7 @@ class SampleTableBox(Box):
         self.stco = None
 
     def parse(self, reader: BinaryFileReader) -> None:
-        super(SampleTableBox, self).parse(reader)
+        super().parse(reader)
 
         while not self.read_complete(reader):
             box_size, box_type = boxutils.read_box_header(reader)
@@ -65,7 +49,7 @@ class SampleTableBox(Box):
             elif box_type == "stsz":
                 self.stsz = SampleSizeBox()
                 self.stsz.parse(reader)
-            elif box_type == "stco" or box_type == "co64":
+            elif box_type in ("stco", "co64"):
                 self.stco = ChunkOffsetBox()
                 self.stco.parse(reader)
             else:
@@ -74,7 +58,7 @@ class SampleTableBox(Box):
         assert self.read_complete(reader), f"{self.type} num bytes left not 0."
 
     def print_box(self) -> None:
-        super(SampleTableBox, self).print_box()
+        super().print_box()
         if self.stsd is not None:
             self.stsd.print_box()
         if self.stts is not None:
@@ -89,8 +73,5 @@ class SampleTableBox(Box):
             self.stco.print_box()
 
 
-# -----------------------------------
-# main
-# -----------------------------------
 if __name__ == "__main__":
     pass

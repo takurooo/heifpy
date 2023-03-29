@@ -1,6 +1,3 @@
-# -----------------------------------
-# import
-# -----------------------------------
 from heifpy.file import BinaryFileReader
 
 from . import boxutils
@@ -10,18 +7,6 @@ from .mdiabox import MediaBox
 from .tkhdbox import TrackHeaderBox
 
 
-# -----------------------------------
-# define
-# -----------------------------------
-
-# -----------------------------------
-# function
-# -----------------------------------
-
-
-# -----------------------------------
-# class
-# -----------------------------------
 class TrackBox(Box):
     """
     ISO/IEC 14496-12
@@ -32,14 +17,14 @@ class TrackBox(Box):
     """
 
     def __init__(self):
-        super(TrackBox, self).__init__()
+        super().__init__()
         self.tkhd = None
         self.tref = None
         self.edts = None
         self.mdia = None
 
     def parse(self, reader: BinaryFileReader) -> None:
-        super(TrackBox, self).parse(reader)
+        super().parse(reader)
 
         while not self.read_complete(reader):
             box_size, box_type = boxutils.read_box_header(reader)
@@ -57,7 +42,7 @@ class TrackBox(Box):
                 reader.seek(box_size, 1)
 
     def print_box(self) -> None:
-        super(TrackBox, self).print_box()
+        super().print_box()
         if self.tkhd is not None:
             self.tkhd.print_box()
         if self.edts is not None:
@@ -66,8 +51,5 @@ class TrackBox(Box):
             self.mdia.print_box()
 
 
-# -----------------------------------
-# main
-# -----------------------------------
 if __name__ == "__main__":
     pass

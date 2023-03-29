@@ -1,22 +1,6 @@
-# -----------------------------------
-# import
-# -----------------------------------
 from heifpy.file import BinaryFileReader
 
 from .basebox import FullBox
-
-
-# -----------------------------------
-# define
-# -----------------------------------
-
-# -----------------------------------
-# function
-# -----------------------------------
-
-# -----------------------------------
-# class
-# -----------------------------------
 
 
 class TrackHeaderBox(FullBox):
@@ -29,7 +13,7 @@ class TrackHeaderBox(FullBox):
     """
 
     def __init__(self):
-        super(TrackHeaderBox, self).__init__()
+        super().__init__()
         self.creation_time = 0
         self.modification_time = 0
         self.track_ID = 0
@@ -42,7 +26,7 @@ class TrackHeaderBox(FullBox):
         self.height = 0
 
     def parse(self, reader: BinaryFileReader) -> None:
-        super(TrackHeaderBox, self).parse(reader)
+        super().parse(reader)
 
         if self.get_version() == 1:
             self.creation_time = reader.read64()
@@ -76,7 +60,7 @@ class TrackHeaderBox(FullBox):
         assert self.read_complete(reader), f"{self.type} num bytes left not 0."
 
     def print_box(self) -> None:
-        super(TrackHeaderBox, self).print_box()
+        super().print_box()
         print("creation_time     :", self.creation_time)
         print("modification_time :", self.modification_time)
         print("track_ID          :", self.track_ID)
@@ -89,8 +73,5 @@ class TrackHeaderBox(FullBox):
         print("height            :", self.height >> 16)
 
 
-# -----------------------------------
-# main
-# -----------------------------------
 if __name__ == "__main__":
     pass

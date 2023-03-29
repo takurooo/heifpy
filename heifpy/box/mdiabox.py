@@ -1,6 +1,3 @@
-# -----------------------------------
-# import
-# -----------------------------------
 from heifpy.file import BinaryFileReader
 
 from . import boxutils
@@ -8,19 +5,6 @@ from .basebox import Box
 from .hdlrbox import HandlerReferenceBox
 from .mdhdbox import MediaHeaderBox
 from .minfbox import MediaInformationBox
-
-
-# -----------------------------------
-# define
-# -----------------------------------
-
-# -----------------------------------
-# function
-# -----------------------------------
-
-# -----------------------------------
-# class
-# -----------------------------------
 
 
 class MediaBox(Box):
@@ -33,13 +17,13 @@ class MediaBox(Box):
     """
 
     def __init__(self):
-        super(MediaBox, self).__init__()
+        super().__init__()
         self.mdhd = None
         self.hdlr = None
         self.minf = None
 
     def parse(self, reader: BinaryFileReader) -> None:
-        super(MediaBox, self).parse(reader)
+        super().parse(reader)
 
         while not self.read_complete(reader):
             box_size, box_type = boxutils.read_box_header(reader)
@@ -58,7 +42,7 @@ class MediaBox(Box):
         assert self.read_complete(reader), f"{self.type} num bytes left not 0."
 
     def print_box(self) -> None:
-        super(MediaBox, self).print_box()
+        super().print_box()
         if self.mdhd is not None:
             self.mdhd.print_box()
         if self.hdlr is not None:
@@ -67,8 +51,5 @@ class MediaBox(Box):
             self.minf.print_box()
 
 
-# -----------------------------------
-# main
-# -----------------------------------
 if __name__ == "__main__":
     pass

@@ -1,20 +1,10 @@
-# -----------------------------------
-# import
-# -----------------------------------
 import os
 import struct
 
 
 __all__ = ["BinaryFileReader"]
-# -----------------------------------
-# define
-# -----------------------------------
+
 BIG_LITTLE = {"little": "<", "big": ">"}
-
-
-# -----------------------------------
-# function
-# -----------------------------------
 
 
 class BinaryFileReader:
@@ -167,31 +157,31 @@ class BinaryFileReader:
     def is_byte_aligned(self) -> bool:
         return self.num_bits_left == 0
 
-    def readbits(self, len: int) -> int:
+    def readbits(self, num_bits: int) -> int:
         # big endian only
 
-        if len == 0:
+        if num_bits == 0:
             return 0
 
-        if len > 8:
-            return_bits = self.read8() << (len - 8)
-            return_bits |= self.readbits(len - 8)
+        if num_bits > 8:
+            return_bits = self.read8() << (num_bits - 8)
+            return_bits |= self.readbits(num_bits - 8)
             return return_bits
 
-        if self.num_bits_left >= len:
-            return_bits = self.bit_buffer >> (8 - len)
-            self.bit_buffer = (self.bit_buffer << len) & 0xFF
-            self.num_bits_left -= len
+        if self.num_bits_left >= num_bits:
+            return_bits = self.bit_buffer >> (8 - num_bits)
+            self.bit_buffer = (self.bit_buffer << num_bits) & 0xFF
+            self.num_bits_left -= num_bits
 
         else:
             read_bits = self.read8()
             self.bit_buffer = (self.bit_buffer << self.num_bits_left) | read_bits
             self.num_bits_left += 8
-            return_bits = self.bit_buffer >> (self.num_bits_left - len)
+            return_bits = self.bit_buffer >> (self.num_bits_left - num_bits)
             self.bit_buffer = (
-                self.bit_buffer << (8 - (self.num_bits_left - len))
+                self.bit_buffer << (8 - (self.num_bits_left - num_bits))
             ) & 0xFF
-            self.num_bits_left -= len
+            self.num_bits_left -= num_bits
 
         return return_bits
 
@@ -206,8 +196,5 @@ class BinaryFileReader:
         return s
 
 
-# -----------------------------------
-# main
-# -----------------------------------
 if __name__ == "__main__":
     pass

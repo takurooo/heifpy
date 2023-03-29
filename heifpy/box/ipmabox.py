@@ -1,6 +1,3 @@
-# -----------------------------------
-# import
-# -----------------------------------
 from typing import List
 
 from heifpy.file import BinaryFileReader
@@ -8,18 +5,6 @@ from heifpy.file import BinaryFileReader
 from .basebox import FullBox
 
 
-# -----------------------------------
-# define
-# -----------------------------------
-
-# -----------------------------------
-# function
-# -----------------------------------
-
-
-# -----------------------------------
-# class
-# -----------------------------------
 class Association:
     def __init__(self):
         self.item_ID = 0
@@ -34,7 +19,7 @@ class ItemPropertyAssociation(FullBox):
     """
 
     def __init__(self):
-        super(ItemPropertyAssociation, self).__init__()
+        super().__init__()
         self.entry_cout = None
         self.association_count = None
         # self.item_ID = None
@@ -43,7 +28,7 @@ class ItemPropertyAssociation(FullBox):
         self.association_list = []
 
     def parse(self, reader: BinaryFileReader) -> None:
-        super(ItemPropertyAssociation, self).parse(reader)
+        super().parse(reader)
 
         self.entry_cout = reader.read32()
 
@@ -52,7 +37,7 @@ class ItemPropertyAssociation(FullBox):
         # self.association_count = []
         # self.essential = [[] for _ in range(self.entry_cout)]
         # self.property_index = [[] for _ in range(self.entry_cout)]
-        for i in range(self.entry_cout):
+        for _ in range(self.entry_cout):
             association = Association()
 
             if self.get_version() < 1:
@@ -83,7 +68,7 @@ class ItemPropertyAssociation(FullBox):
         return self.association_list
 
     def print_box(self) -> None:
-        super(ItemPropertyAssociation, self).print_box()
+        super().print_box()
         print("entry_cout :", self.entry_cout)
         print("association_count :", len(self.association_list))
 
@@ -93,8 +78,5 @@ class ItemPropertyAssociation(FullBox):
             print("\t\tproperty_index :", association.property_index)
 
 
-# -----------------------------------
-# main
-# -----------------------------------
 if __name__ == "__main__":
     pass

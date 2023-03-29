@@ -1,6 +1,3 @@
-# -----------------------------------
-# import
-# -----------------------------------
 from typing import List
 
 from heifpy.file import BinaryFileReader
@@ -15,18 +12,6 @@ from .item_property import ItemProperty
 from .pixibox import PixelInformationProperty
 
 
-# -----------------------------------
-# define
-# -----------------------------------
-
-# -----------------------------------
-# function
-# -----------------------------------
-
-
-# -----------------------------------
-# class
-# -----------------------------------
 class ItemPropertyContainerBox(Box):
     """
     ISO/IEC 23008-12
@@ -34,11 +19,11 @@ class ItemPropertyContainerBox(Box):
     """
 
     def __init__(self):
-        super(ItemPropertyContainerBox, self).__init__()
+        super().__init__()
         self.item_properties = []
 
     def parse(self, reader: BinaryFileReader) -> None:
-        super(ItemPropertyContainerBox, self).parse(reader)
+        super().parse(reader)
 
         self.item_properties = []
         while not self.read_complete(reader):
@@ -65,7 +50,7 @@ class ItemPropertyContainerBox(Box):
         assert self.read_complete(reader), f"{self.type} num bytes left not 0."
 
     def print_box(self) -> None:
-        super(ItemPropertyContainerBox, self).print_box()
+        super().print_box()
         for item_property in self.item_properties:
             item_property.print_box()
 
@@ -73,8 +58,5 @@ class ItemPropertyContainerBox(Box):
         return self.item_properties
 
 
-# -----------------------------------
-# main
-# -----------------------------------
 if __name__ == "__main__":
     pass

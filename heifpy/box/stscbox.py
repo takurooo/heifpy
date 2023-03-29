@@ -1,25 +1,8 @@
-# -----------------------------------
-# import
-# -----------------------------------
-from typing import List
-
 from heifpy.file import BinaryFileReader
 
 from .basebox import FullBox
 
 
-# -----------------------------------
-# define
-# -----------------------------------
-
-# -----------------------------------
-# function
-# -----------------------------------
-
-
-# -----------------------------------
-# class
-# -----------------------------------
 class SampleToChunkBox(FullBox):
     """
     ISO/IEC 14496-12
@@ -30,14 +13,14 @@ class SampleToChunkBox(FullBox):
     """
 
     def __init__(self):
-        super(SampleToChunkBox, self).__init__()
+        super().__init__()
         self.entry_count = 0
         self.first_chunk = []
         self.samples_per_chunk = []
         self.sample_description_index = []
 
     def parse(self, reader: BinaryFileReader) -> None:
-        super(SampleToChunkBox, self).parse(reader)
+        super().parse(reader)
 
         self.entry_count = reader.read32()
 
@@ -49,7 +32,7 @@ class SampleToChunkBox(FullBox):
         assert self.read_complete(reader), f"{self.type} num bytes left not 0."
 
     def print_box(self) -> None:
-        super(SampleToChunkBox, self).print_box()
+        super().print_box()
         print("entry_count              :", self.entry_count)
         print("first_chunk              :", self.first_chunk)
         print("samples_per_chunk        :", self.samples_per_chunk)
@@ -67,8 +50,5 @@ class SampleToChunkBox(FullBox):
         return samples_per_chunk
 
 
-# -----------------------------------
-# main
-# -----------------------------------
 if __name__ == "__main__":
     pass

@@ -1,6 +1,3 @@
-# -----------------------------------
-# import
-# -----------------------------------
 from typing import List, Optional
 
 from heifpy.file import BinaryFileReader
@@ -8,18 +5,6 @@ from heifpy.file import BinaryFileReader
 from .basebox import FullBox
 
 
-# -----------------------------------
-# define
-# -----------------------------------
-
-# -----------------------------------
-# function
-# -----------------------------------
-
-
-# -----------------------------------
-# class
-# -----------------------------------
 class ItemLocationExtent:
     def __init__(self):
         self.extent_offset = 0
@@ -68,7 +53,7 @@ class ItemLocationBox(FullBox):
     """
 
     def __init__(self):
-        super(ItemLocationBox, self).__init__()
+        super().__init__()
         self.offset_size = None
         self.length_size = None
         self.base_offset_size = None
@@ -76,14 +61,17 @@ class ItemLocationBox(FullBox):
         self.item_loc_list = []
 
     def parse(self, reader: BinaryFileReader) -> None:
-        super(ItemLocationBox, self).parse(reader)
+        super().parse(reader)
 
         tmp = reader.read16()
-        # offset_size is taken from the set {0, 4, 8} and indicates the length data bytes of the offset field.
+        # offset_size is taken from the set {0, 4, 8} and
+        #  indicates the length data bytes of the offset field.
         self.offset_size = (tmp & 0xF000) >> 12
-        # length_size is taken from the set {0, 4, 8} and indicates the length data bytes of the length field.
+        # length_size is taken from the set {0, 4, 8} and
+        #  indicates the length data bytes of the length field.
         self.length_size = (tmp & 0x0F00) >> 8
-        # base_offset_size is taken from the set {0, 4, 8} and indicates the length data bytes of the base_offset field.
+        # base_offset_size is taken from the set {0, 4, 8} and
+        #  indicates the length data bytes of the base_offset field.
         self.base_offset_size = (tmp & 0x00F0) >> 4
 
         if self.get_version() == 1 or self.get_version() == 2:
@@ -97,7 +85,7 @@ class ItemLocationBox(FullBox):
         else:
             item_count = reader.read32()
 
-        for i in range(item_count):
+        for _ in range(item_count):
             item_loc = ItemLocation()
 
             if self.get_version() < 2:
@@ -116,7 +104,7 @@ class ItemLocationBox(FullBox):
             item_loc.base_offset = reader.readn(self.base_offset_size * 8)
 
             extent_count = reader.read16()
-            for j in range(extent_count):
+            for _ in range(extent_count):
                 item_loc_ext = ItemLocationExtent()
 
                 if (
@@ -133,7 +121,7 @@ class ItemLocationBox(FullBox):
         assert self.read_complete(reader), f"{self.type} num bytes left not 0."
 
     def print_box(self) -> None:
-        super(ItemLocationBox, self).print_box()
+        super().print_box()
         print("offset_size :", self.offset_size)
         print("length_size :", self.length_size)
         print("base_offset_size :", self.base_offset_size)
@@ -164,8 +152,5 @@ class ItemLocationBox(FullBox):
         return False
 
 
-# -----------------------------------
-# main
-# -----------------------------------
 if __name__ == "__main__":
     pass

@@ -1,7 +1,3 @@
-# -----------------------------------
-# import
-# -----------------------------------
-
 from heifpy.file import BinaryFileReader
 
 from . import boxutils
@@ -10,18 +6,6 @@ from .mvhdbox import MovieHeaderBox
 from .trackbox import TrackBox
 
 
-# -----------------------------------
-# define
-# -----------------------------------
-
-# -----------------------------------
-# function
-# -----------------------------------
-
-
-# -----------------------------------
-# class
-# -----------------------------------
 class MovieBox(Box):
     """
     ISO/IEC 14496-12
@@ -32,12 +16,12 @@ class MovieBox(Box):
     """
 
     def __init__(self):
-        super(MovieBox, self).__init__()
+        super().__init__()
         self.mvhd = None
         self.trak = []
 
     def parse(self, reader: BinaryFileReader) -> None:
-        super(MovieBox, self).parse(reader)
+        super().parse(reader)
         while not self.read_complete(reader):
             box_size, box_type = boxutils.read_box_header(reader)
             if box_type == "mvhd":
@@ -51,15 +35,12 @@ class MovieBox(Box):
                 reader.seek(box_size, 1)
 
     def print_box(self) -> None:
-        super(MovieBox, self).print_box()
+        super().print_box()
         if self.mvhd is not None:
             self.mvhd.print_box()
         for trak in self.trak:
             trak.print_box()
 
 
-# -----------------------------------
-# main
-# -----------------------------------
 if __name__ == "__main__":
     pass

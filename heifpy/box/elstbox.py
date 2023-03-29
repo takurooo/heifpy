@@ -1,23 +1,8 @@
-# -----------------------------------
-# import
-# -----------------------------------
 from heifpy.file import BinaryFileReader
 
 from .basebox import FullBox
 
 
-# -----------------------------------
-# define
-# -----------------------------------
-
-# -----------------------------------
-# function
-# -----------------------------------
-
-
-# -----------------------------------
-# class
-# -----------------------------------
 class EditListEntry:
     def __init__(self):
         self.segment_duration = 0
@@ -36,12 +21,12 @@ class EditListBox(FullBox):
     """
 
     def __init__(self):
-        super(EditListBox, self).__init__()
+        super().__init__()
         self.entry_count = 0
         self.entries = []
 
     def parse(self, reader: BinaryFileReader) -> None:
-        super(EditListBox, self).parse(reader)
+        super().parse(reader)
 
         self.entry_count = reader.read32()
         self.entries = []
@@ -62,16 +47,15 @@ class EditListBox(FullBox):
         assert self.read_complete(reader), f"{self.type} num bytes left not 0."
 
     def print_box(self) -> None:
-        super(EditListBox, self).print_box()
+        super().print_box()
 
         for i, entry in enumerate(self.entries):
             print(
-                f"entry no.{i} segment_duration {entry.segment_duration} media_time {entry.media_time} media_rate_integer {entry.media_rate_integer} media_rate_fraction {entry.media_rate_fraction}"
+                f"entry no.{i} segment_duration {entry.segment_duration} \
+                media_time {entry.media_time} media_rate_integer {entry.media_rate_integer} \
+                media_rate_fraction {entry.media_rate_fraction}"
             )
 
 
-# -----------------------------------
-# main
-# -----------------------------------
 if __name__ == "__main__":
     pass

@@ -1,22 +1,6 @@
-# -----------------------------------
-# import
-# -----------------------------------
 from heifpy.file import BinaryFileReader
 
 from .basebox import FullBox
-
-
-# -----------------------------------
-# define
-# -----------------------------------
-
-# -----------------------------------
-# function
-# -----------------------------------
-
-# -----------------------------------
-# class
-# -----------------------------------
 
 
 class PrimaryItemBox(FullBox):
@@ -28,11 +12,11 @@ class PrimaryItemBox(FullBox):
     """
 
     def __init__(self):
-        super(PrimaryItemBox, self).__init__()
+        super().__init__()
         self.item_ID = 0
 
     def parse(self, reader: BinaryFileReader) -> None:
-        super(PrimaryItemBox, self).parse(reader)
+        super().parse(reader)
 
         self.item_ID = reader.read16()
         assert self.read_complete(reader), f"{self.type} num bytes left not 0."
@@ -41,12 +25,9 @@ class PrimaryItemBox(FullBox):
         return self.item_ID
 
     def print_box(self) -> None:
-        super(PrimaryItemBox, self).print_box()
+        super().print_box()
         print("item_ID :", self.item_ID)
 
 
-# -----------------------------------
-# main
-# -----------------------------------
 if __name__ == "__main__":
     pass

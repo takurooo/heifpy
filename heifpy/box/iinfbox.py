@@ -1,6 +1,3 @@
-# -----------------------------------
-# import
-# -----------------------------------
 from typing import List
 
 from heifpy.file import BinaryFileReader
@@ -8,19 +5,6 @@ from heifpy.file import BinaryFileReader
 from . import boxutils
 from .basebox import FullBox
 from .infebox import ItemInfoEntry
-
-
-# -----------------------------------
-# define
-# -----------------------------------
-
-# -----------------------------------
-# function
-# -----------------------------------
-
-# -----------------------------------
-# class
-# -----------------------------------
 
 
 class ItemInformationBox(FullBox):
@@ -33,12 +17,12 @@ class ItemInformationBox(FullBox):
     """
 
     def __init__(self):
-        super(ItemInformationBox, self).__init__()
+        super().__init__()
         self.infe_list = []
         self.item_id_list = []  # 後で使う用
 
     def parse(self, reader: BinaryFileReader) -> None:
-        super(ItemInformationBox, self).parse(reader)
+        super().parse(reader)
 
         if self.get_version() == 0:
             entry_count = reader.read16()
@@ -48,7 +32,7 @@ class ItemInformationBox(FullBox):
         self.infe_list = []
         self.item_id_list = []
         for _ in range(entry_count):
-            box_size, box_type = boxutils.read_box_header(reader)
+            _, box_type = boxutils.read_box_header(reader)
             if box_type == "infe":
                 infe = ItemInfoEntry()
                 infe.parse(reader)
@@ -59,7 +43,7 @@ class ItemInformationBox(FullBox):
         assert self.read_complete(reader), f"{self.type} num bytes left not 0."
 
     def print_box(self) -> None:
-        super(ItemInformationBox, self).print_box()
+        super().print_box()
         print("entry_count :", len(self.infe_list))
         for infe in self.infe_list:
             infe.print_box()
@@ -75,8 +59,5 @@ class ItemInformationBox(FullBox):
         return ""
 
 
-# -----------------------------------
-# main
-# -----------------------------------
 if __name__ == "__main__":
     pass

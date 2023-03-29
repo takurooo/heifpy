@@ -1,23 +1,8 @@
-# -----------------------------------
-# import
-# -----------------------------------
 from heifpy.file import BinaryFileReader
 
 from .basebox import Box
 
 
-# -----------------------------------
-# define
-# -----------------------------------
-
-# -----------------------------------
-# function
-# -----------------------------------
-
-
-# -----------------------------------
-# class
-# -----------------------------------
 class NalArray:
     def __init__(self):
         self.array_completeness = 0
@@ -89,7 +74,7 @@ class HEVCDecoderConfigurationRecord:
         self.lengthSizeMinus = tmp & 0b00000011
         numOfArrays = reader.read8()
 
-        for j in range(numOfArrays):
+        for _ in range(numOfArrays):
             tmp = reader.read8()
             nal_array = NalArray()
             nal_array.array_completeness = (tmp & 0b10000000) >> 7
@@ -97,7 +82,7 @@ class HEVCDecoderConfigurationRecord:
             nal_array.numNalus = reader.read16()
 
             nal_unit = b""
-            for i in range(nal_array.numNalus):
+            for _ in range(nal_array.numNalus):
                 nalUnitLength = reader.read16()
                 for _ in range(nalUnitLength):
                     nal_unit += reader.read_raw(1)
@@ -113,17 +98,17 @@ class HEVCConfigurationBox(Box):
     """
 
     def __init__(self):
-        super(HEVCConfigurationBox, self).__init__()
+        super().__init__()
         self.HEVCConfig = None
 
     def parse(self, reader: BinaryFileReader) -> None:
-        super(HEVCConfigurationBox, self).parse(reader)
+        super().parse(reader)
 
         self.HEVCConfig = HEVCDecoderConfigurationRecord(reader)
         assert self.read_complete(reader), f"{self.type} num bytes left not 0."
 
     def print_box(self) -> None:
-        super(HEVCConfigurationBox, self).print_box()
+        super().print_box()
         print(
             "configurationVersion                : ",
             self.HEVCConfig.configurationVersion,
@@ -140,10 +125,12 @@ class HEVCConfigurationBox(Box):
             self.HEVCConfig.general_profile_idc,
         )
         print(
-            f"general_profile_compatibility_flags : {self.HEVCConfig.general_profile_compatibility_flags:#x}"
+            f"general_profile_compatibility_flags : \
+                {self.HEVCConfig.general_profile_compatibility_flags:#x}"
         )
         print(
-            f"general_constraint_indicator_flags  : {self.HEVCConfig.general_constraint_indicator_flags:#x}"
+            f"general_constraint_indicator_flags  : \
+                {self.HEVCConfig.general_constraint_indicator_flags:#x}"
         )
         print(
             "general_level_idc                   : ", self.HEVCConfig.general_level_idc
@@ -183,8 +170,5 @@ class HEVCConfigurationBox(Box):
                 print("\t\tnalUnit : ", nalUnit)
 
 
-# -----------------------------------
-# main
-# -----------------------------------
 if __name__ == "__main__":
     pass

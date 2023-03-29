@@ -1,7 +1,3 @@
-# -----------------------------------
-# import
-# -----------------------------------
-
 from heifpy.file import BinaryFileReader
 
 from . import boxutils
@@ -14,19 +10,6 @@ from .irefbox import ItemReferenceBox
 from .pitmbox import PrimaryItemBox
 
 
-# -----------------------------------
-# define
-# -----------------------------------
-
-# -----------------------------------
-# function
-# -----------------------------------
-
-# -----------------------------------
-# class
-# -----------------------------------
-
-
 class MetaBox(FullBox):
     """
     ISO/IEC 14496-12
@@ -37,7 +20,7 @@ class MetaBox(FullBox):
     """
 
     def __init__(self):
-        super(MetaBox, self).__init__()
+        super().__init__()
         self.hdlr = None
         self.pitm = None
         self.iinf = None
@@ -46,7 +29,7 @@ class MetaBox(FullBox):
         self.iloc = None
 
     def parse(self, reader: BinaryFileReader) -> None:
-        super(MetaBox, self).parse(reader)
+        super().parse(reader)
 
         while not self.read_complete(reader):
             box_size, box_type = boxutils.read_box_header(reader)
@@ -73,7 +56,7 @@ class MetaBox(FullBox):
                 reader.seek(box_size, 1)
 
     def print_box(self) -> None:
-        super(MetaBox, self).print_box()
+        super().print_box()
 
         if self.hdlr is not None:
             self.hdlr.print_box()
@@ -89,8 +72,5 @@ class MetaBox(FullBox):
             self.iloc.print_box()
 
 
-# -----------------------------------
-# main
-# -----------------------------------
 if __name__ == "__main__":
     pass

@@ -1,22 +1,6 @@
-# -----------------------------------
-# import
-# -----------------------------------
 from heifpy.file import BinaryFileReader
 
 from .basebox import FullBox
-
-
-# -----------------------------------
-# define
-# -----------------------------------
-
-# -----------------------------------
-# function
-# -----------------------------------
-
-# -----------------------------------
-# class
-# -----------------------------------
 
 
 class VideoMediaHeaderBox(FullBox):
@@ -29,12 +13,12 @@ class VideoMediaHeaderBox(FullBox):
     """
 
     def __init__(self):
-        super(VideoMediaHeaderBox, self).__init__()
+        super().__init__()
         self.graphicsmode = 0
         self.opcolor = []
 
     def parse(self, reader: BinaryFileReader) -> None:
-        super(VideoMediaHeaderBox, self).parse(reader)
+        super().parse(reader)
 
         self.graphicsmode = reader.read16()  # copy = 0
         for _ in range(3):
@@ -43,13 +27,10 @@ class VideoMediaHeaderBox(FullBox):
         assert self.read_complete(reader), f"{self.type} num bytes left not 0."
 
     def print_box(self) -> None:
-        super(VideoMediaHeaderBox, self).print_box()
+        super().print_box()
         print("graphicmode :", self.graphicsmode)
         print("opcolor     :", self.opcolor)
 
 
-# -----------------------------------
-# main
-# -----------------------------------
 if __name__ == "__main__":
     pass

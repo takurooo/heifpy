@@ -1,22 +1,6 @@
-# -----------------------------------
-# import
-# -----------------------------------
 from heifpy.file import BinaryFileReader
 
 from .basebox import Box
-
-
-# -----------------------------------
-# define
-# -----------------------------------
-
-# -----------------------------------
-# function
-# -----------------------------------
-
-# -----------------------------------
-# class
-# -----------------------------------
 
 
 class ColourInformationBox(Box):
@@ -26,7 +10,7 @@ class ColourInformationBox(Box):
     """
 
     def __init__(self):
-        super(ColourInformationBox, self).__init__()
+        super().__init__()
         self.colour_type = None
         self.colour_primaries = None
         self.transfer_characteristics = None
@@ -34,7 +18,7 @@ class ColourInformationBox(Box):
         self.full_range_flag = None
 
     def parse(self, reader: BinaryFileReader) -> None:
-        super(ColourInformationBox, self).parse(reader)
+        super().parse(reader)
 
         self.colour_type = reader.read_str32()
         if self.colour_type == "nclx":
@@ -51,7 +35,7 @@ class ColourInformationBox(Box):
         assert self.read_complete(reader), f"{self.type} num bytes left not 0."
 
     def print_box(self) -> None:
-        super(ColourInformationBox, self).print_box()
+        super().print_box()
         print("colour_type :", self.colour_type)
         print("colour_primaries :", self.colour_primaries)
         print("transfer_characteristics :", self.transfer_characteristics)
@@ -59,8 +43,5 @@ class ColourInformationBox(Box):
         print("full_range_flag :", self.full_range_flag)
 
 
-# -----------------------------------
-# main
-# -----------------------------------
 if __name__ == "__main__":
     pass

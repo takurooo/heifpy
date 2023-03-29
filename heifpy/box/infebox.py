@@ -1,23 +1,8 @@
-# -----------------------------------
-# import
-# -----------------------------------
 from heifpy.file import BinaryFileReader
 
 from .basebox import FullBox
 
 
-# -----------------------------------
-# define
-# -----------------------------------
-
-# -----------------------------------
-# function
-# -----------------------------------
-
-
-# -----------------------------------
-# class
-# -----------------------------------
 class ItemInfoExtension:
     def __init__(self, extension_type):
         pass
@@ -30,7 +15,7 @@ class ItemInfoEntry(FullBox):
     """
 
     def __init__(self):
-        super(ItemInfoEntry, self).__init__()
+        super().__init__()
         self.item_ID = None
         self.item_protection_index = None
         self.item_name = None
@@ -42,7 +27,7 @@ class ItemInfoEntry(FullBox):
         self.iteminfoext = None
 
     def parse(self, reader: BinaryFileReader) -> None:
-        super(ItemInfoEntry, self).parse(reader)
+        super().parse(reader)
 
         if self.get_version() == 0 or self.get_version() == 1:
             self.item_ID = reader.read16()
@@ -75,7 +60,7 @@ class ItemInfoEntry(FullBox):
                 self.item_uri_type = reader.read_null_terminated()
 
     def print_box(self) -> None:
-        super(ItemInfoEntry, self).print_box()
+        super().print_box()
         print("item_ID               :", self.item_ID)
         print("item_protection_index :", self.item_protection_index)
         print("item_name             :", self.item_name)
@@ -86,8 +71,5 @@ class ItemInfoEntry(FullBox):
         print("extension_type        :", self.extension_type)
 
 
-# -----------------------------------
-# main
-# -----------------------------------
 if __name__ == "__main__":
     pass

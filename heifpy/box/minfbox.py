@@ -1,6 +1,3 @@
-# -----------------------------------
-# import
-# -----------------------------------
 from heifpy.file import BinaryFileReader
 
 from . import boxutils
@@ -9,19 +6,6 @@ from .hmhdbox import HintMediaHeaderBox
 from .smhdbox import SoundMediaHeaderBox
 from .stblbox import SampleTableBox
 from .vmhdbox import VideoMediaHeaderBox
-
-
-# -----------------------------------
-# define
-# -----------------------------------
-
-# -----------------------------------
-# function
-# -----------------------------------
-
-# -----------------------------------
-# class
-# -----------------------------------
 
 
 class MediaInformationBox(Box):
@@ -34,7 +18,7 @@ class MediaInformationBox(Box):
     """
 
     def __init__(self):
-        super(MediaInformationBox, self).__init__()
+        super().__init__()
         self.vmhd = None
         self.smhd = None
         self.hmhd = None
@@ -45,7 +29,7 @@ class MediaInformationBox(Box):
         self.stbl = None
 
     def parse(self, reader: BinaryFileReader) -> None:
-        super(MediaInformationBox, self).parse(reader)
+        super().parse(reader)
 
         while not self.read_complete(reader):
             box_size, box_type = boxutils.read_box_header(reader)
@@ -76,7 +60,7 @@ class MediaInformationBox(Box):
         assert self.read_complete(reader), f"{self.type} num bytes left not 0."
 
     def print_box(self) -> None:
-        super(MediaInformationBox, self).print_box()
+        super().print_box()
         if self.vmhd is not None:
             self.vmhd.print_box()
         if self.smhd is not None:
@@ -87,8 +71,5 @@ class MediaInformationBox(Box):
             self.stbl.print_box()
 
 
-# -----------------------------------
-# main
-# -----------------------------------
 if __name__ == "__main__":
     pass

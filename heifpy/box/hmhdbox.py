@@ -1,22 +1,6 @@
-# -----------------------------------
-# import
-# -----------------------------------
 from heifpy.file import BinaryFileReader
 
 from .basebox import FullBox
-
-
-# -----------------------------------
-# define
-# -----------------------------------
-
-# -----------------------------------
-# function
-# -----------------------------------
-
-# -----------------------------------
-# class
-# -----------------------------------
 
 
 class HintMediaHeaderBox(FullBox):
@@ -29,14 +13,14 @@ class HintMediaHeaderBox(FullBox):
     """
 
     def __init__(self):
-        super(HintMediaHeaderBox, self).__init__()
+        super().__init__()
         self.maxPDUsize = 0
         self.avgPDUsize = 0
         self.maxbitrate = 0
         self.avgbitrate = 0
 
     def parse(self, reader: BinaryFileReader) -> None:
-        super(HintMediaHeaderBox, self).parse(reader)
+        super().parse(reader)
 
         self.maxPDUsize = reader.read16()
         self.avgPDUsize = reader.read16()
@@ -47,15 +31,12 @@ class HintMediaHeaderBox(FullBox):
         assert self.read_complete(reader), f"{self.type} num bytes left not 0."
 
     def print_box(self) -> None:
-        super(HintMediaHeaderBox, self).print_box()
+        super().print_box()
         print("maxPDUsize :", self.maxPDUsize)
         print("avgPDUsize :", self.avgPDUsize)
         print("maxbitrate :", self.maxbitrate)
         print("avgbitrate :", self.avgbitrate)
 
 
-# -----------------------------------
-# main
-# -----------------------------------
 if __name__ == "__main__":
     pass

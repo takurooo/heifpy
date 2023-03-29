@@ -1,32 +1,16 @@
-# -----------------------------------
-# import
-# -----------------------------------
 from heifpy.file import BinaryFileReader
 
 from . import boxutils
 from .basebox import Box, FullBox
 
 
-# -----------------------------------
-# define
-# -----------------------------------
-
-# -----------------------------------
-# function
-# -----------------------------------
-
-# -----------------------------------
-# class
-# -----------------------------------
-
-
 class SampleEntry(Box):
     def __init__(self):
-        super(SampleEntry, self).__init__()
+        super().__init__()
         self.data_reference_index = 0
 
     def parse(self, reader: BinaryFileReader) -> None:
-        super(SampleEntry, self).parse(reader)
+        super().parse(reader)
 
         for _ in range(6):
             _ = reader.read8()  # reserved=0
@@ -38,14 +22,14 @@ class SampleEntry(Box):
 
 class AudioSampleEntry(SampleEntry):
     def __init__(self):
-        super(AudioSampleEntry, self).__init__()
+        super().__init__()
         self.channelcount = 0
         self.samplesize = 0
         self.pre_defined = 0
         self.samplerate = 0
 
     def parse(self, reader: BinaryFileReader) -> None:
-        super(AudioSampleEntry, self).parse(reader)
+        super().parse(reader)
 
         for _ in range(2):
             _ = reader.read32()  # reserved=0
@@ -73,14 +57,15 @@ class SampleDescriptionBox(FullBox):
     """
 
     def __init__(self):
-        super(SampleDescriptionBox, self).__init__()
+        super().__init__()
         self.avc1 = None
         self.twos = None
         self.ipcm = None
         self.rtmd = None
+        self.entry_count = 0
 
     def parse(self, reader: BinaryFileReader) -> None:
-        super(SampleDescriptionBox, self).parse(reader)
+        super().parse(reader)
 
         self.entry_count = reader.read32()
         for _ in range(self.entry_count):
@@ -103,7 +88,7 @@ class SampleDescriptionBox(FullBox):
         assert self.read_complete(reader), f"{self.type} num bytes left not 0."
 
     def print_box(self) -> None:
-        super(SampleDescriptionBox, self).print_box()
+        super().print_box()
         if self.avc1 is not None:
             self.avc1.print_box()
         if self.twos is not None:
@@ -114,8 +99,5 @@ class SampleDescriptionBox(FullBox):
             self.rtmd.print_box()
 
 
-# -----------------------------------
-# main
-# -----------------------------------
 if __name__ == "__main__":
     pass

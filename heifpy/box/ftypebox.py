@@ -1,6 +1,3 @@
-# -----------------------------------
-# import
-# -----------------------------------
 from typing import List
 
 from heifpy.file import BinaryFileReader
@@ -8,18 +5,6 @@ from heifpy.file import BinaryFileReader
 from .basebox import Box
 
 
-# -----------------------------------
-# define
-# -----------------------------------
-
-# -----------------------------------
-# function
-# -----------------------------------
-
-
-# -----------------------------------
-# class
-# -----------------------------------
 class FileTypeBox(Box):
     """
     ISO/IEC 14496-12
@@ -30,13 +15,13 @@ class FileTypeBox(Box):
     """
 
     def __init__(self):
-        super(FileTypeBox, self).__init__()
+        super().__init__()
         self.major_brand = ""
         self.minor_version = 0
         self.compatible_brands = []
 
     def parse(self, reader: BinaryFileReader) -> None:
-        super(FileTypeBox, self).parse(reader)
+        super().parse(reader)
         self.major_brand = reader.read_str32()
         self.minor_version = reader.read32()
 
@@ -56,14 +41,11 @@ class FileTypeBox(Box):
         return self.compatible_brands
 
     def print_box(self) -> None:
-        super(FileTypeBox, self).print_box()
+        super().print_box()
         print("major_brand       :", self.major_brand)
         print("minor_version     :", self.minor_version)
         print("compatible_brands :", self.compatible_brands)
 
 
-# -----------------------------------
-# main
-# -----------------------------------
 if __name__ == "__main__":
     pass

@@ -1,23 +1,8 @@
-# -----------------------------------
-# import
-# -----------------------------------
 from heifpy.file import BinaryFileReader
 
 from .basebox import FullBox
 
 
-# -----------------------------------
-# define
-# -----------------------------------
-
-# -----------------------------------
-# function
-# -----------------------------------
-
-
-# -----------------------------------
-# class
-# -----------------------------------
 class DecodingTimeToSampleBox(FullBox):
     """
     ISO/IEC 14496-12
@@ -28,13 +13,13 @@ class DecodingTimeToSampleBox(FullBox):
     """
 
     def __init__(self):
-        super(DecodingTimeToSampleBox, self).__init__()
+        super().__init__()
         self.entry_count = 0
         self.sample_count = []
         self.sample_delta = []
 
     def parse(self, reader: BinaryFileReader) -> None:
-        super(DecodingTimeToSampleBox, self).parse(reader)
+        super().parse(reader)
 
         self.entry_count = reader.read32()
 
@@ -45,14 +30,11 @@ class DecodingTimeToSampleBox(FullBox):
         assert self.read_complete(reader), f"{self.type} num bytes left not 0."
 
     def print_box(self) -> None:
-        super(DecodingTimeToSampleBox, self).print_box()
+        super().print_box()
         print("entry_count   :", self.entry_count)
         print("sample_count  :", self.sample_count)
         print("sample_delta  :", self.sample_delta)
 
 
-# -----------------------------------
-# main
-# -----------------------------------
 if __name__ == "__main__":
     pass

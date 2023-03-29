@@ -1,19 +1,9 @@
-# -----------------------------------
-# import
-# -----------------------------------
 import struct
 
 
 __all__ = ["BinaryFileWriter"]
-# -----------------------------------
-# define
-# -----------------------------------
+
 BIG_LITTLE = {"little": "<", "big": ">"}
-
-
-# -----------------------------------
-# function
-# -----------------------------------
 
 
 class BinaryFileWriter:
@@ -42,7 +32,6 @@ class BinaryFileWriter:
         self.f.write(struct.pack(BIG_LITTLE[self.byteorder] + "H", v))
 
     def write24(self, v: int) -> None:
-        b = []
         if self.byteorder == "big":
             c = (v >> 16) & 0xFF
             self.write8(c)
@@ -68,8 +57,5 @@ class BinaryFileWriter:
         self.f.write(v.encode("utf-8"))
 
 
-# -----------------------------------
-# main
-# -----------------------------------
 if __name__ == "__main__":
     pass

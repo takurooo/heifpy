@@ -1,22 +1,6 @@
-# -----------------------------------
-# import
-# -----------------------------------
 from heifpy.file import BinaryFileReader
 
 from .basebox import FullBox
-
-
-# -----------------------------------
-# define
-# -----------------------------------
-
-# -----------------------------------
-# function
-# -----------------------------------
-
-# -----------------------------------
-# class
-# -----------------------------------
 
 
 class HandlerReferenceBox(FullBox):
@@ -29,13 +13,13 @@ class HandlerReferenceBox(FullBox):
     """
 
     def __init__(self):
-        super(HandlerReferenceBox, self).__init__()
+        super().__init__()
         self.pre_defined = 0
         self.handler_type = ""
         self.name = ""
 
     def parse(self, reader: BinaryFileReader) -> None:
-        super(HandlerReferenceBox, self).parse(reader)
+        super().parse(reader)
 
         self.pre_defined = reader.read32()
         self.handler_type = reader.read_str32()
@@ -45,19 +29,15 @@ class HandlerReferenceBox(FullBox):
         self.name = ""
         if not self.read_complete(reader):
             self.name = reader.read_null_terminated()
-            pass
 
         assert self.read_complete(reader), f"{self.type} num bytes left not 0."
 
     def print_box(self) -> None:
-        super(HandlerReferenceBox, self).print_box()
+        super().print_box()
         print("pre_defined  :", self.pre_defined)
         print("handler_type :", self.handler_type)
         print("name         :", self.name)
 
 
-# -----------------------------------
-# main
-# -----------------------------------
 if __name__ == "__main__":
     pass

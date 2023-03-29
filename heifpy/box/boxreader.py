@@ -1,27 +1,9 @@
-# -----------------------------------
-# import
-# -----------------------------------
-from enum import Enum
-
 from heifpy.file import BinaryFileReader
 
 from . import boxutils
 from .ftypebox import FileTypeBox
 from .mdatbox import MediaDataBox
 from .metabox import MetaBox
-
-
-# -----------------------------------
-# define
-# -----------------------------------
-
-# -----------------------------------
-# function
-# -----------------------------------
-
-# -----------------------------------
-# class
-# -----------------------------------
 
 
 class BoxReader:
@@ -33,8 +15,6 @@ class BoxReader:
     def read_boxes(self, reader: BinaryFileReader) -> None:
         while reader.num_bytes_left():
             box_size, box_type = boxutils.read_box_header(reader)
-            # print(box_type)
-
             if box_type == "ftyp":
                 self.ftyp = FileTypeBox()
                 self.ftyp.parse(reader)
@@ -54,8 +34,5 @@ class BoxReader:
             self.meta.print_box()
 
 
-# -----------------------------------
-# main
-# -----------------------------------
 if __name__ == "__main__":
     pass

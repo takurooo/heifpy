@@ -1,23 +1,8 @@
-# -----------------------------------
-# import
-# -----------------------------------
 from heifpy.file import BinaryFileReader
 
 from .basebox import Box
 
 
-# -----------------------------------
-# define
-# -----------------------------------
-
-# -----------------------------------
-# function
-# -----------------------------------
-
-
-# -----------------------------------
-# class
-# -----------------------------------
 class MediaDataBox(Box):
     """
     ISO/IEC 14496-12
@@ -28,18 +13,15 @@ class MediaDataBox(Box):
     """
 
     def __init__(self):
-        super(MediaDataBox, self).__init__()
+        super().__init__()
 
     def parse(self, reader: BinaryFileReader) -> None:
-        super(MediaDataBox, self).parse(reader)
+        super().parse(reader)
         self.to_box_end(reader)
 
     def print_box(self) -> None:
-        super(MediaDataBox, self).print_box()
+        super().print_box()
 
 
-# -----------------------------------
-# main
-# -----------------------------------
 if __name__ == "__main__":
     pass

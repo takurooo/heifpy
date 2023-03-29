@@ -1,6 +1,3 @@
-# -----------------------------------
-# import
-# -----------------------------------
 from heifpy.file import BinaryFileReader
 
 from . import boxutils
@@ -9,17 +6,6 @@ from .ipcobox import ItemPropertyContainerBox
 from .ipmabox import ItemPropertyAssociation
 
 
-# -----------------------------------
-# define
-# -----------------------------------
-
-# -----------------------------------
-# function
-# -----------------------------------
-
-# -----------------------------------
-# class
-# -----------------------------------
 # class SampleEntry(Box):
 #
 #     def __init__(self, f):
@@ -58,13 +44,13 @@ class ItemPropertiesBox(Box):
     """
 
     def __init__(self):
-        super(ItemPropertiesBox, self).__init__()
+        super().__init__()
         # self.property_container = None
         self.ipco = None
         self.ipma = None
 
     def parse(self, reader: BinaryFileReader) -> None:
-        super(ItemPropertiesBox, self).parse(reader)
+        super().parse(reader)
 
         while not self.read_complete(reader):
             box_size, box_type = boxutils.read_box_header(reader)
@@ -81,15 +67,12 @@ class ItemPropertiesBox(Box):
         assert self.read_complete(reader), f"{self.type} num bytes left not 0."
 
     def print_box(self) -> None:
-        super(ItemPropertiesBox, self).print_box()
+        super().print_box()
         if self.ipco is not None:
             self.ipco.print_box()
         if self.ipma is not None:
             self.ipma.print_box()
 
 
-# -----------------------------------
-# main
-# -----------------------------------
 if __name__ == "__main__":
     pass

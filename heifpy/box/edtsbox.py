@@ -1,24 +1,8 @@
-# -----------------------------------
-# import
-# -----------------------------------
 from heifpy.file import BinaryFileReader
 
 from . import boxutils
 from .basebox import Box
 from .elstbox import EditListBox
-
-
-# -----------------------------------
-# define
-# -----------------------------------
-
-# -----------------------------------
-# function
-# -----------------------------------
-
-# -----------------------------------
-# class
-# -----------------------------------
 
 
 class EditBox(Box):
@@ -31,11 +15,11 @@ class EditBox(Box):
     """
 
     def __init__(self):
-        super(EditBox, self).__init__()
+        super().__init__()
         self.elst = None
 
     def parse(self, reader: BinaryFileReader) -> None:
-        super(EditBox, self).parse(reader)
+        super().parse(reader)
 
         while not self.read_complete(reader):
             box_size, box_type = boxutils.read_box_header(reader)
@@ -49,13 +33,10 @@ class EditBox(Box):
         assert self.read_complete(reader), f"{self.type} num bytes left not 0."
 
     def print_box(self) -> None:
-        super(EditBox, self).print_box()
+        super().print_box()
         if self.elst is not None:
             self.elst.print_box()
 
 
-# -----------------------------------
-# main
-# -----------------------------------
 if __name__ == "__main__":
     pass

@@ -1,23 +1,8 @@
-# -----------------------------------
-# import
-# -----------------------------------
 from heifpy.file import BinaryFileReader
 
 from .basebox import FullBox
 
 
-# -----------------------------------
-# define
-# -----------------------------------
-
-# -----------------------------------
-# function
-# -----------------------------------
-
-
-# -----------------------------------
-# class
-# -----------------------------------
 class CompositionTimeToSample(FullBox):
     """
     ISO/IEC 14496-12
@@ -28,13 +13,13 @@ class CompositionTimeToSample(FullBox):
     """
 
     def __init__(self):
-        super(CompositionTimeToSample, self).__init__()
+        super().__init__()
         self.entry_count = None
         self.sample_count = []
         self.sample_offset = []
 
     def parse(self, reader: BinaryFileReader) -> None:
-        super(CompositionTimeToSample, self).parse(reader)
+        super().parse(reader)
 
         self.entry_count = reader.read32()
 
@@ -50,14 +35,11 @@ class CompositionTimeToSample(FullBox):
         assert self.read_complete(reader), f"{self.type} num bytes left not 0."
 
     def print_box(self) -> None:
-        super(CompositionTimeToSample, self).print_box()
+        super().print_box()
         print("entry_count   :", self.entry_count)
         print("sample_count  :", self.sample_count)
         print("sample_offset :", self.sample_offset)
 
 
-# -----------------------------------
-# main
-# -----------------------------------
 if __name__ == "__main__":
     pass

@@ -1,23 +1,8 @@
-# -----------------------------------
-# import
-# -----------------------------------
 from heifpy.file import BinaryFileReader
 
 from .basebox import FullBox
 
 
-# -----------------------------------
-# define
-# -----------------------------------
-
-# -----------------------------------
-# function
-# -----------------------------------
-
-
-# -----------------------------------
-# class
-# -----------------------------------
 class MovieHeaderBox(FullBox):
     """
     ISO/IEC 14496-12
@@ -28,7 +13,7 @@ class MovieHeaderBox(FullBox):
     """
 
     def __init__(self):
-        super(MovieHeaderBox, self).__init__()
+        super().__init__()
         self.creation_time = 0
         self.modification_time = 0
         self.timescale = 0
@@ -40,7 +25,7 @@ class MovieHeaderBox(FullBox):
         self.next_track_ID = 0
 
     def parse(self, reader: BinaryFileReader) -> None:
-        super(MovieHeaderBox, self).parse(reader)
+        super().parse(reader)
 
         if self.get_version() == 1:
             self.creation_time = reader.read64()
@@ -73,7 +58,7 @@ class MovieHeaderBox(FullBox):
         assert self.read_complete(reader), f"{self.type} num bytes left not 0."
 
     def print_box(self) -> None:
-        super(MovieHeaderBox, self).print_box()
+        super().print_box()
         print("creation_time :", self.creation_time)
         print("modification_time :", self.modification_time)
         print("timescale :", self.timescale)
@@ -85,8 +70,5 @@ class MovieHeaderBox(FullBox):
         print("next_track_ID :", self.next_track_ID)
 
 
-# -----------------------------------
-# main
-# -----------------------------------
 if __name__ == "__main__":
     pass
