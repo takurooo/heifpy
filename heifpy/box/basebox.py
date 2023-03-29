@@ -1,20 +1,4 @@
-# -----------------------------------
-# import
-# -----------------------------------
 from heifpy.file import BinaryFileReader
-
-
-# -----------------------------------
-# define
-# -----------------------------------
-
-# -----------------------------------
-# function
-# -----------------------------------
-
-# -----------------------------------
-# class
-# -----------------------------------
 
 
 class Box:
@@ -54,8 +38,7 @@ class Box:
     def get_size(self) -> int:
         if self.size == 1:
             return self.largesize
-        else:
-            return self.size
+        return self.size
 
     def get_type(self) -> str:
         return self.type
@@ -65,10 +48,7 @@ class Box:
 
     def read_complete(self, reader: BinaryFileReader) -> bool:
         read_size = reader.tell() - self.start_pos
-        if self.get_size() <= read_size:
-            return True
-        else:
-            return False
+        return self.get_size() <= read_size
 
     def to_box_end(self, reader: BinaryFileReader) -> None:
         reader.seek(self.start_pos + self.get_size())
@@ -86,13 +66,13 @@ class Box:
 
 class FullBox(Box):
     def __init__(self):
-        super(FullBox, self).__init__()
+        super().__init__()
         self.is_fullbox = True
         self.version = 0
         self.flags = 0
 
     def parse(self, reader: BinaryFileReader) -> None:
-        super(FullBox, self).parse(reader)
+        super().parse(reader)
         # v_flags = bitstream.read32('big')
         # self.version = (v_flags & 0xff000000) >> 24
         # self.flags = (v_flags & 0x00ffffff)
@@ -106,13 +86,10 @@ class FullBox(Box):
         return self.flags
 
     def print_box(self) -> None:
-        super(FullBox, self).print_box()
+        super().print_box()
         print("version :", self.version)
         print("flags   :", self.flags)
 
 
-# -----------------------------------
-# main
-# -----------------------------------
 if __name__ == "__main__":
     pass
