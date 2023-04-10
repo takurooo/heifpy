@@ -9,4 +9,4 @@
 # can either give multiple identifier separated by comma (,) or put this option
 # multiple time (only on the command line, not in the configuration file where
 # it should appear only once).
-disable=C0103
+disable=C0103,C0114,C0116,C0115,W0246,W0511,R1732,R0801,R0902,R0903,R0904
