@@ -95,7 +95,11 @@ def demux(img_path: Path) -> None:
           and a filename pattern: "{img_path.stem}_item_{item_id}_{item_type}{ext}".
         - Prints information about each item, including item ID, item type, and output path.
     """
-    heif_reader = heifpy.HeifReader(str(img_path))
+    try:
+        heif_reader = heifpy.HeifReader(str(img_path))
+    except Exception as e:
+        print(f"Error initializing HeifReader: {e}")
+        return
     item_id_list = heif_reader.get_item_id_list()
     for item_id in item_id_list:
         item_type = heif_reader.get_item_type(item_id)
@@ -103,7 +107,12 @@ def demux(img_path: Path) -> None:
             continue
 
         out_path = build_output_path(img_path, item_id, item_type)
-        item = heif_reader.read_item(item_id)
+        try:
+            item = heif_reader.read_item(item_id)
+        except Exception as e:
+            print(f"Error reading item {item_id}: {e}")
+            continue
+
         write_item(item, out_path)
         print(f"Item ID: {item_id}\nItem Type: {item_type}\nSave: {out_path}\n")
 
