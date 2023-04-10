@@ -52,6 +52,21 @@ def get_ext_by_item_type(item_type: heifpy.ItemType) -> str:
     return ext
 
 
+def build_output_path(img_path: Path, item_id: int, item_type: heifpy.ItemType) -> Path:
+    """Create an output path for the demuxed item based on the input image path, item ID, and item type.
+
+    Args:
+        img_path (Path): The path to the input HEIF image file.
+        item_id (int): The ID of the item to be extracted from the HEIF image file.
+        item_type (heifpy.ItemType): The type of the item to be extracted from the HEIF image file.
+
+    Returns:
+        Path: The output path for the demuxed item with the appropriate file extension.
+    """
+    ext = get_ext_by_item_type(item_type)
+    return img_path.parent.joinpath(f"{img_path.stem}_item_{item_id}_{item_type}{ext}")
+
+
 def demux(img_path: Path) -> None:
     """Demux a HEIF image file and save its items as separate files.
 
@@ -73,16 +88,11 @@ def demux(img_path: Path) -> None:
         if item_type == heifpy.ItemType.GRID:
             continue
 
-        ext = get_ext_by_item_type(item_type)
-        out_path = f"{img_path.stem}_item_{item_id}_{item_type}{ext}"
+        out_path = build_output_path(img_path, item_id, item_type)
+        item = heif_reader.read_item(item_id)
         with open(out_path, "wb") as wf:
-            item = heif_reader.read_item(item_id)
             wf.write(item)
-
-            print()
-            print(f"item_ID     : {item_id}")
-            print(f"item_type   : {item_type}")
-            print("save :", out_path)
+            print(f"Item ID: {item_id}\nItem Type: {item_type}\nSave: {out_path}\n")
 
     return
 
