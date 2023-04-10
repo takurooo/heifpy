@@ -39,6 +39,19 @@ def get_files_with_target_ext_from_dir(
     return files_list
 
 
+def get_ext_by_item_type(item_type: heifpy.ItemType) -> str:
+    """Get file extension by item type.
+
+    Args:
+        item_type (heifpy.ItemType): The item type.
+
+    Returns:
+        str: The file extension.
+    """
+    ext = ".xml" if item_type == heifpy.ItemType.XMP else ".bin"
+    return ext
+
+
 def demux(img_path: Path) -> None:
     """Demux a HEIF image file and save its items as separate files.
 
@@ -60,7 +73,7 @@ def demux(img_path: Path) -> None:
         if item_type == heifpy.ItemType.GRID:
             continue
 
-        ext = ".xml" if item_type == heifpy.ItemType.XMP else ".bin"
+        ext = get_ext_by_item_type(item_type)
         out_path = f"{img_path.stem}_item_{item_id}_{item_type}{ext}"
         with open(out_path, "wb") as wf:
             item = heif_reader.read_item(item_id)
