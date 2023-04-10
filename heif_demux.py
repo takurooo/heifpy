@@ -101,33 +101,32 @@ def demux(img_path: Path) -> None:
     except Exception as e:
         print(f"Error initializing HeifReader: {e}")
         return
+
     item_id_list = heif_reader.get_item_id_list()
     for item_id in item_id_list:
         item_type = heif_reader.get_item_type(item_id)
         if item_type == heifpy.ItemType.GRID:
             continue
-
-        out_path = build_output_path(img_path, item_id, item_type)
         try:
             item = heif_reader.read_item(item_id)
         except Exception as e:
             print(f"Error reading item {item_id}: {e}")
             continue
 
+        out_path = build_output_path(img_path, item_id, item_type)
         write_item(item, out_path)
         print(f"Item ID: {item_id}\nItem Type: {item_type}\nSave: {out_path}\n")
-
     return
 
 
 def main(args: argparse.Namespace) -> None:
     in_path = Path(args.file_or_dir_path)
-
-    file_paths = []
     if in_path.is_file():
         file_paths = [in_path]
     elif in_path.is_dir():
-        file_paths = get_files_with_target_ext_from_dir(Path(in_path), [".heic"])
+        file_paths = get_files_with_target_ext_from_dir(in_path, [".heic"])
+    else:
+        raise ValueError(f"{in_path} is neither a file nor a directory.")
 
     for img_path in file_paths:
         demux(img_path)
