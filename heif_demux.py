@@ -67,6 +67,20 @@ def build_output_path(img_path: Path, item_id: int, item_type: heifpy.ItemType) 
     return img_path.parent.joinpath(f"{img_path.stem}_item_{item_id}_{item_type}{ext}")
 
 
+def write_item(item: bytes, out_path: Path) -> None:
+    """Write a byte stream to a file.
+
+    Args:
+        item (bytes): The byte stream to be written to the file.
+        out_path (Path): The output path for the file.
+
+    Returns:
+        None
+    """
+    with open(out_path, "wb") as wf:
+        wf.write(item)
+
+
 def demux(img_path: Path) -> None:
     """Demux a HEIF image file and save its items as separate files.
 
@@ -90,9 +104,8 @@ def demux(img_path: Path) -> None:
 
         out_path = build_output_path(img_path, item_id, item_type)
         item = heif_reader.read_item(item_id)
-        with open(out_path, "wb") as wf:
-            wf.write(item)
-            print(f"Item ID: {item_id}\nItem Type: {item_type}\nSave: {out_path}\n")
+        write_item(item, out_path)
+        print(f"Item ID: {item_id}\nItem Type: {item_type}\nSave: {out_path}\n")
 
     return
 
