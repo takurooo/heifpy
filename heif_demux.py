@@ -88,4 +88,4 @@ def main(args: argparse.Namespace) -> None:
 
 
 if __name__ == "__main__":
-    main(get_args())
+    main(parse_args())
