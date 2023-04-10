@@ -21,7 +21,7 @@ def parse_args() -> argparse.Namespace:
 
 
 def get_files_with_target_ext_from_dir(
-    dir: Path, target_ext: Union[List[str], None] = None
+    directory: Path, target_ext: Union[List[str], None] = None
 ) -> List[Path]:
     """Get a list of files with specified extensions from a directory.
 
@@ -32,10 +32,11 @@ def get_files_with_target_ext_from_dir(
     Returns:
         List[Path]: A list of files with specified extensions.
     """
+    files = directory.glob("*")
     if target_ext:
-        files_list = [fname for fname in dir.glob("*") if fname.suffix in target_ext]
+        files_list = [fname for fname in files if fname.suffix in target_ext]
     else:
-        files_list = [fname for fname in dir.glob("*")]
+        files_list = list(files)
     return files_list
 
 
