@@ -1,31 +1,12 @@
-# -----------------------------------
-# import
-# -----------------------------------
 import argparse
-import os
 
 import heifpy
-
-
-# -----------------------------------
-# define
-# -----------------------------------
-
-
-# -----------------------------------
-# function
-# -----------------------------------
 
 
 def get_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Parse HEIF file.")
     parser.add_argument("img_path", type=str, help="path2your_image", default=None)
     return parser.parse_args()
-
-
-# -----------------------------------
-# main
-# -----------------------------------
 
 
 def main(args: argparse.Namespace) -> None:
