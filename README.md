@@ -1,16 +1,17 @@
 # heifpy
 
-Reader for High Efficiency Image File Format (HEIF)
+A High Efficiency Image File Format (HEIF) Reader for Python
 
-Read and parse HEIF file for Python.
+This library allows you to read and parse HEIF files in Python.
+It provieds the following functionality:
 
-- reader for HEIF file.
-- extracting information of HEIF file.
-- not support image sequence.
+- Read HEIF files.
+- Extract information from HEIF files.
+- Note: Image sequences are not supported.
 
 # Usage
 
-### How to use example
+### Example Usage
 
 - #### Demux HEIF
 
@@ -18,7 +19,7 @@ Read and parse HEIF file for Python.
 python heif_demux.py <HEIF file>
 ```
 
-Demux HEIF file and save items.
+Demux a HEIF file and save its items.
 
 - #### Parse HEIF
 
@@ -26,9 +27,9 @@ Demux HEIF file and save items.
 python heif_parse.py <HEIF file>
 ```
 
-Display box information in HEIF file.
+Display box information contained in a HEIF file.
 
-### How to use HeifReader module
+### How to use the HeifReader module
 
 ```python
 import heifpy
@@ -39,15 +40,15 @@ HeifReader functions
 
 | function name                       |                                                                         |
 | ----------------------------------- | ----------------------------------------------------------------------- |
-| get_major_brand()                   | Get major version from the FileTypeBox.                                 |
-| get_minor_version()                 | TGet minor version from the FileTypeBox.D                               |
-| get_compatible_brands()             | Get list of compatible brand from the FileTypeBox.                      |
-| get_item_id_list()                  | Get list of item id from the ItemInformationBox.                        |
-| get_item_id_list_by_type(item_type) | Get list of item id from the ItemInformationBox by item type.           |
-| get_primary_item_id()               | Get primary item id from the PrimaryItemBox.                            |
-| get_item_type(item_id)              | Get item type from the ItemInformationBox by item id.                   |
-| get_item_properties(item_id)        | Get item properties from the ItemPropertiesBox by item id.              |
-| get_item_offsets_sizes(item_id)     | Get list of location from the ItemLocationBox by item id.               |
-| get_item_width_height(item_id)      | Get list of resolution from the ImageSpatialExtentsProperty by item id. |
-| read_item(item_id)                  | Get item binary data by item id.                                        |
+| get_major_brand()                   | Retrieve the major version from the FileTypeBox.                        |
+| get_minor_version()                 | Retrieve minor version from the FileTypeBox.                            |
+| get_compatible_brands()             | Retrieve a list of compatible brands from the FileTypeBox.              |
+| get_item_id_list()                  | Retrieve a list of item IDs from the ItemInformationBox.                |
+| get_item_id_list_by_type(item_type) | Retrieve a list of item IDs from the ItemInformationBox by item type.   |
+| get_primary_item_id()               | Retrieve the primary item ID from the PrimaryItemBox.                   |
+| get_item_type(item_id)              | Retrieve the item type from the ItemInformationBox by item ID.          |
+| get_item_properties(item_id)        | Retrieve item properties from the ItemPropertiesBox by item ID.         |
+| get_item_offsets_sizes(item_id)     | Retrieve a list of location from the ItemLocationBox by item ID.        |
+| get_item_width_height(item_id)      | Retrieve a list of resolution from the ImageSpatialExtentsProperty by item ID. |
+| read_item(item_id)                  | Retrieve item binary data by item ID.                                   |
 | print_boxes()                       | Display box information.                                                |
