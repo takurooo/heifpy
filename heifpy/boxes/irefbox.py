@@ -1,6 +1,5 @@
 from heifpy.binary import BinaryFileReader
 
-from . import boxutils
 from .basebox import Box, FullBox
 
 
